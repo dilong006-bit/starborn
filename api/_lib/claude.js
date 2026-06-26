@@ -6,7 +6,7 @@ export const DEFAULT_MODEL = "claude-sonnet-4-6";
 const TONE_GUIDE = {
   essay: "잔잔한 감성 에세이 톤. 1인칭 관찰자의 사색.",
   fortune: "다정한 우주 운세 톤. 희망적이되 가벼운 점괘 느낌.",
-  poem: "짧은 산문시 톤. 행을 나눠 이미지 중심으로.",
+  poem: "다정하고 서정적인 짧은 글. 시처럼 행을 나누되 차갑지 않게, 독자에게 따뜻하게 건네는 위로의 어조로.",
 };
 
 const SYSTEM = `너는 우주 사진을 보고 한국어로 짧고 감성적인 글을 쓰는 작가다.
