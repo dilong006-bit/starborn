@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-screen bg-cosmos-950 bg-cosmos-radial text-slate-100 antialiased;
+  }
+}
