@@ -15,6 +15,13 @@ export default {
           glow: "#a8b5ff", // 별빛 하이라이트
           star: "#ffd479", // 별 골드 (절제해서 포인트로만)
         },
+        // occasion 태그 색 (SSOT)
+        occasion: {
+          birthday: "#ffd479",
+          anniversary: "#ff9ecb",
+          today: "#a8b5ff",
+          custom: "#a8b5ff",
+        },
       },
       fontFamily: {
         sans: [

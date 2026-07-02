@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getApod, getStory } from "../lib/api";
 import type { ApodResponse, Tone } from "../lib/types";
+import { hasCollection } from "../lib/collection";
 import CosmicCard from "../components/CosmicCard";
 import Loader from "../components/Loader";
 
@@ -18,8 +19,10 @@ const FALLBACK_NOTICE: Record<string, string> = {
 
 export default function Home({
   onOpenBirthday,
+  onOpenCollection,
 }: {
   onOpenBirthday: () => void;
+  onOpenCollection: () => void;
 }) {
   const [apod, setApod] = useState<ApodResponse | null>(null);
   const [apodLoading, setApodLoading] = useState(true);
@@ -102,12 +105,22 @@ export default function Home({
             onRetryStory={() => void loadStory(apod.date)}
           />
 
-          <button
-            onClick={onOpenBirthday}
-            className="mt-2 rounded-control bg-cosmos-accent px-6 py-3 font-semibold text-white shadow-e1 transition hover:shadow-glow"
-          >
-            🎂 내 생일의 우주 보기
-          </button>
+          <div className="mt-2 flex flex-wrap justify-center gap-3">
+            <button
+              onClick={onOpenBirthday}
+              className="rounded-control bg-cosmos-accent px-6 py-3 font-semibold text-white shadow-e1 transition hover:shadow-glow active:animate-jelly"
+            >
+              🎂 내 생일의 우주 보기
+            </button>
+            {hasCollection() && (
+              <button
+                onClick={onOpenCollection}
+                className="rounded-control border border-white/15 px-6 py-3 font-semibold text-slate-200 transition hover:bg-white/10 active:animate-jelly"
+              >
+                ⭐ 내 우주
+              </button>
+            )}
+          </div>
         </div>
       )}
     </main>
