@@ -70,6 +70,7 @@ function adaptResponse(res: ServerResponse) {
   const r = res as ServerResponse & {
     status: (code: number) => typeof r;
     json: (obj: unknown) => typeof r;
+    send: (body: unknown) => typeof r;
   };
   r.status = (code: number) => {
     r.statusCode = code;
@@ -79,6 +80,17 @@ function adaptResponse(res: ServerResponse) {
     if (!r.headersSent)
       r.setHeader("content-type", "application/json; charset=utf-8");
     r.end(JSON.stringify(obj));
+    return r;
+  };
+  // Vercel res.send 에뮬레이션: Buffer/문자열은 그대로, 객체는 JSON 직렬화
+  r.send = (body: unknown) => {
+    if (Buffer.isBuffer(body) || typeof body === "string") {
+      r.end(body);
+    } else {
+      if (!r.headersSent)
+        r.setHeader("content-type", "application/json; charset=utf-8");
+      r.end(JSON.stringify(body));
+    }
     return r;
   };
   return r;
